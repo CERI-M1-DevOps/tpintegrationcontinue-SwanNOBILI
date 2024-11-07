@@ -1,17 +1,32 @@
-name: Merge
+name: Documentation (Merge)
 
 on:
-    pull_request:
-        types:
-            - closed
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: write
 
 jobs:
-    documentation-deployment:
-        if: github.event.pull_request.merged == true
-        runs-on: ubuntu-latest
-        steps:
-            - name: Generate Documentation
-              run: mvn -B javadoc::javadoc -f pom.xml
+  build:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
 
-            - name: Deploy
-              run: peaceiris/actions-gh-pages@v4
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+
+      - name: Generate Documentation
+        run: mvn -B javadoc:javadoc
+
+      - name: Deploy to Github (pages)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/reports/apidocs
