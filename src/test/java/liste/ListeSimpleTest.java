@@ -54,8 +54,30 @@ class ListeSimpleTest {
         assertEquals("ListeSimple(Noeud(3), Noeud(2), Noeud(1))", listeATester.toString());
     }
 
-    @Test
-    void modifiePremier() {
+    @Test   // Cas liste vide
+    void modifiePremierCas1() {
+        listeATester.modifiePremier(1, 10);
+        assertEquals("ListeSimple()", listeATester.toString());
+    }
+
+    @Test   // Cas element = nouvelleValeur
+    void modifiePremierCas2() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.modifiePremier(1, 1);
+        assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+    }
+
+    @Test   // Cas element pas dans la liste
+    void modifiePremierCas3() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.modifiePremier(3, 4);
+        assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+    }
+
+    @Test   // Cas element dans la liste
+    void modifiePremierCas4() {
         listeATester.ajout(1);
         listeATester.ajout(2);
         listeATester.ajout(3);
