@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Generate Documentation
-        env: 
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B javadoc::javadoc
+      env: 
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: mvn -B javadoc::javadoc
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v4
       with:
