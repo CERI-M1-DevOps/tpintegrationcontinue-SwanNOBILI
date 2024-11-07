@@ -91,7 +91,6 @@ class ListeSimpleTest {
         assertEquals(4, listeATester.tete.getSuivant().getElement());
     }
 
-    
     @Test
     void supprimePremierListeVide() {
         listeATester.supprimePremier(1);
