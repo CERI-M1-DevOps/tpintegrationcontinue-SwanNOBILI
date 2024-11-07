@@ -1,3 +1,4 @@
+name: Merge
 on:
   pull_request:
     types:
@@ -8,11 +9,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - name: Generate Documentation
-      env: 
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: mvn -B javadoc::javadoc
-    - name: Deploy
+      run: mvn -B javadoc::javadoc -f pom.xml
+    - name: Deploy Documentation
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
