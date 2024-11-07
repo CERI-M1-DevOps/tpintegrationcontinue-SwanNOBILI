@@ -27,7 +27,7 @@ public class ListeSimple {
             if (courant.getElement() == element)
                 courant.setElement(nouvelleValeur);
             courant = courant.getSuivant();
-        }
+        } 
     }
 
     public String toString() {
