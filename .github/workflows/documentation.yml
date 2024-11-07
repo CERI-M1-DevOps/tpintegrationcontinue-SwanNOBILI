@@ -10,12 +10,8 @@ jobs:
         if: github.event.pull_request.merged == true
         runs-on: ubuntu-latest
         steps:
-            - name: Check merge
-              run: |
-                  echo "The PR was merged"
-
             - name: Generate Documentation
-              run: mvn -B javadoc::javadoc
+              run: mvn -B javadoc::javadoc -f pom.xml
 
             - name: Deploy
               run: peaceiris/actions-gh-pages@v4
