@@ -1,16 +1,16 @@
+name: Merge
 on:
   pull_request:
     types:
       - closed
         
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-      run: mvn -B javadoc::javadoc -f pom.xml
-    - name: Deploy Documentation
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+  if: github.event.pull_request.merged == true
+  runs-on: ubuntu-latest
+  steps:
+    run: mvn -B javadoc::javadoc -f pom.xml
+  - name: Deploy Documentation
+    uses: peaceiris/actions-gh-pages@v4
+    with:
+      github_token: ${{ secrets.GITHUB_TOKEN }}
+      publish_dir: ./public
