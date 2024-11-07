@@ -12,7 +12,7 @@ jobs:
           distribution: 'corretto' # See 'Supported distributions' for available options
           java-version: '21'
           cache: 'maven'
-          cache-dependency-path: 'sub-project/pom.xml' # optional
+          cache-dependency-path: 'pom.xml' # optional
       - name: Build Maven
         env: 
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
