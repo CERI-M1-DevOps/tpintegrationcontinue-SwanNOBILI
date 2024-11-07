@@ -58,6 +58,7 @@ class ListeSimpleTest {
     void modifiePremierCas1() {
         listeATester.modifiePremier(1, 10);
         assertEquals("ListeSimple()", listeATester.toString());
+        assertEquals(0, listeATester.getSize());
     }
 
     @Test   // Cas element pas dans la liste
@@ -66,6 +67,7 @@ class ListeSimpleTest {
         listeATester.ajout(2);
         listeATester.modifiePremier(3, 4);
         assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+        assertEquals(2, listeATester.getSize());
     }
 
     @Test   // Cas element dans la liste
@@ -126,6 +128,15 @@ class ListeSimpleTest {
         listeATester.supprimePremier(1);
         assertEquals("ListeSimple(Noeud(4), Noeud(3), Noeud(2))", listeATester.toString());
         assertEquals(3, listeATester.getSize());
+    }
+
+    @Test
+    void supprimePremierElemExistePas() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);;
+        listeATester.supprimePremier(3);
+        assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+        assertEquals(2, listeATester.getSize());
     }
 
     @Test
@@ -270,5 +281,16 @@ class ListeSimpleTest {
         listeATester.echanger(r1, r2);
         System.out.println(listeATester);
         assertEquals("ListeSimple(Noeud(4), Noeud(2), Noeud(3), Noeud(1), Noeud(5))", listeATester.toString());
+    }
+
+    @Test
+    void echangerAvecElementQuiExistePas() {
+        listeATester.ajout(5);
+        listeATester.ajout(4);
+        Noeud r1 = listeATester.tete;
+        Noeud r2 = listeATester.tete;
+        assertEquals("ListeSimple(Noeud(4), Noeud(5))", listeATester.toString());
+        listeATester.echanger(r1, r2);
+        assertEquals("ListeSimple(Noeud(4), Noeud(5))", listeATester.toString());
     }
 }
